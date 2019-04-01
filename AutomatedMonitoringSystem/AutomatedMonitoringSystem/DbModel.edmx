@@ -1,0 +1,884 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.Attendance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="MaskingId" />
+          </Key>
+          <Property Name="StudentId" Type="bigint" Nullable="false" />
+          <Property Name="MaskingId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="PresentStatus" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.Class' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="ClassName" />
+            <PropertyRef Name="Shift" />
+          </Key>
+          <Property Name="ClassId" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Shift" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.EaxmResult' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EaxmResult">
+          <Key>
+            <PropertyRef Name="ExamTypeId" />
+            <PropertyRef Name="MaskingId" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="MarksOutOf" />
+            <PropertyRef Name="ObtainMark" />
+          </Key>
+          <Property Name="ExamTypeId" Type="bigint" Nullable="false" />
+          <Property Name="MaskingId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="bigint" Nullable="false" />
+          <Property Name="MarksOutOf" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ObtainMark" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.ExamType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ExamType">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ExamTitle" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="ExamTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Satus" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.Image' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Location" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Location" Type="varbinary" MaxLength="100" Nullable="false" />
+          <Property Name="Extention" Type="nchar" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.Message' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="SenderId" />
+            <PropertyRef Name="ReceiverId" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="SenderId" Type="bigint" Nullable="false" />
+          <Property Name="ReceiverId" Type="bigint" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.Notice' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Notice">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PostedBy" />
+            <PropertyRef Name="MaskingId" />
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="PostedBy" Type="bigint" Nullable="false" />
+          <Property Name="MaskingId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PostedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="PostedForTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.Payment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="bigint" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="nchar" MaxLength="10" />
+          <Property Name="PaidStatus" Type="nchar" MaxLength="10" />
+          <Property Name="SystemEntryDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.Period' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="PeriodId" />
+            <PropertyRef Name="SectionId" />
+            <PropertyRef Name="MaskingSubjectId" />
+            <PropertyRef Name="SubjectId" />
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="PeriodId" Type="int" Nullable="false" />
+          <Property Name="SectionId" Type="int" Nullable="false" />
+          <Property Name="MaskingSubjectId" Type="int" Nullable="false" />
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="TeacherId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.RelationPeriodDayTime' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RelationPeriodDayTime">
+          <Key>
+            <PropertyRef Name="PeriodId" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="EndTime" />
+            <PropertyRef Name="Day" />
+          </Key>
+          <Property Name="PeriodId" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EndTime" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Day" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.RelationStudentGuardian' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RelationStudentGuardian">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="StudentId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.Section' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="SectionId" />
+            <PropertyRef Name="SectionName" />
+          </Key>
+          <Property Name="SectionId" Type="int" Nullable="false" />
+          <Property Name="SectionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.StudentBasic' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="StudentBasic">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Birthday" />
+          </Key>
+          <Property Name="StudentId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MotherName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PresentAddress" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PermanentAddress" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Contact1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contact2" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.StudentInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="StudentInfo">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="Roll" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="StudentId" Type="bigint" Nullable="false" />
+          <Property Name="Roll" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Shift" Type="nvarchar" MaxLength="100" />
+          <Property Name="ClassId" Type="bigint" Nullable="false" />
+          <Property Name="SectionId" Type="int" />
+          <Property Name="Residential" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.Subject' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+            <PropertyRef Name="SubjectName" />
+            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="MaskingSubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="SubjectName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClassId" Type="int" Nullable="false" />
+          <Property Name="MaskingSubjectId" Type="int" Nullable="false" />
+          <Property Name="SectionId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.TeacherSubject' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TeacherSubject">
+          <Key>
+            <PropertyRef Name="MaskingSubjectId" />
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="MaskingSubjectId" Type="int" Nullable="false" />
+          <Property Name="TeacherId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UId" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UId" Type="bigint" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AMSDB.dbo.UserType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="AMSDBModelStoreContainer">
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Attendance].[StudentId] AS [StudentId], 
+    [Attendance].[MaskingId] AS [MaskingId], 
+    [Attendance].[Date] AS [Date], 
+    [Attendance].[UpdatedDate] AS [UpdatedDate], 
+    [Attendance].[PresentStatus] AS [PresentStatus]
+    FROM [dbo].[Attendance] AS [Attendance]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Class" EntityType="Self.Class" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Class].[ClassId] AS [ClassId], 
+    [Class].[ClassName] AS [ClassName], 
+    [Class].[Shift] AS [Shift]
+    FROM [dbo].[Class] AS [Class]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EaxmResult" EntityType="Self.EaxmResult" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EaxmResult].[ExamTypeId] AS [ExamTypeId], 
+    [EaxmResult].[MaskingId] AS [MaskingId], 
+    [EaxmResult].[StudentId] AS [StudentId], 
+    [EaxmResult].[MarksOutOf] AS [MarksOutOf], 
+    [EaxmResult].[ObtainMark] AS [ObtainMark], 
+    [EaxmResult].[Date] AS [Date]
+    FROM [dbo].[EaxmResult] AS [EaxmResult]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ExamType" EntityType="Self.ExamType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ExamType].[Id] AS [Id], 
+    [ExamType].[ExamTitle] AS [ExamTitle], 
+    [ExamType].[Satus] AS [Satus]
+    FROM [dbo].[ExamType] AS [ExamType]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Image" EntityType="Self.Image" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Image].[Id] AS [Id], 
+    [Image].[Location] AS [Location], 
+    [Image].[Extention] AS [Extention], 
+    [Image].[Name] AS [Name]
+    FROM [dbo].[Image] AS [Image]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Message" EntityType="Self.Message" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Message].[SenderId] AS [SenderId], 
+    [Message].[ReceiverId] AS [ReceiverId], 
+    [Message].[Message] AS [Message], 
+    [Message].[Date] AS [Date]
+    FROM [dbo].[Message] AS [Message]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Notice" EntityType="Self.Notice" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Notice].[Id] AS [Id], 
+    [Notice].[PostedBy] AS [PostedBy], 
+    [Notice].[MaskingId] AS [MaskingId], 
+    [Notice].[Message] AS [Message], 
+    [Notice].[Title] AS [Title], 
+    [Notice].[PostedDate] AS [PostedDate], 
+    [Notice].[UpdatedDate] AS [UpdatedDate], 
+    [Notice].[PostedForTime] AS [PostedForTime]
+    FROM [dbo].[Notice] AS [Notice]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Payment" EntityType="Self.Payment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Payment].[StudentId] AS [StudentId], 
+    [Payment].[Year] AS [Year], 
+    [Payment].[Month] AS [Month], 
+    [Payment].[PaidStatus] AS [PaidStatus], 
+    [Payment].[SystemEntryDate] AS [SystemEntryDate], 
+    [Payment].[UpdatedDate] AS [UpdatedDate]
+    FROM [dbo].[Payment] AS [Payment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Period" EntityType="Self.Period" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Period].[PeriodId] AS [PeriodId], 
+    [Period].[SectionId] AS [SectionId], 
+    [Period].[MaskingSubjectId] AS [MaskingSubjectId], 
+    [Period].[SubjectId] AS [SubjectId], 
+    [Period].[TeacherId] AS [TeacherId]
+    FROM [dbo].[Period] AS [Period]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RelationPeriodDayTime" EntityType="Self.RelationPeriodDayTime" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RelationPeriodDayTime].[PeriodId] AS [PeriodId], 
+    [RelationPeriodDayTime].[StartTime] AS [StartTime], 
+    [RelationPeriodDayTime].[EndTime] AS [EndTime], 
+    [RelationPeriodDayTime].[Day] AS [Day]
+    FROM [dbo].[RelationPeriodDayTime] AS [RelationPeriodDayTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RelationStudentGuardian" EntityType="Self.RelationStudentGuardian" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RelationStudentGuardian].[StudentId] AS [StudentId], 
+    [RelationStudentGuardian].[UserId] AS [UserId]
+    FROM [dbo].[RelationStudentGuardian] AS [RelationStudentGuardian]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Section" EntityType="Self.Section" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Section].[SectionId] AS [SectionId], 
+    [Section].[SectionName] AS [SectionName], 
+    [Section].[Status] AS [Status]
+    FROM [dbo].[Section] AS [Section]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="StudentBasic" EntityType="Self.StudentBasic" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [StudentBasic].[StudentId] AS [StudentId], 
+    [StudentBasic].[Name] AS [Name], 
+    [StudentBasic].[Birthday] AS [Birthday], 
+    [StudentBasic].[FatherName] AS [FatherName], 
+    [StudentBasic].[MotherName] AS [MotherName], 
+    [StudentBasic].[PresentAddress] AS [PresentAddress], 
+    [StudentBasic].[PermanentAddress] AS [PermanentAddress], 
+    [StudentBasic].[Contact1] AS [Contact1], 
+    [StudentBasic].[Contact2] AS [Contact2]
+    FROM [dbo].[StudentBasic] AS [StudentBasic]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="StudentInfo" EntityType="Self.StudentInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [StudentInfo].[StudentId] AS [StudentId], 
+    [StudentInfo].[Roll] AS [Roll], 
+    [StudentInfo].[Year] AS [Year], 
+    [StudentInfo].[Shift] AS [Shift], 
+    [StudentInfo].[ClassId] AS [ClassId], 
+    [StudentInfo].[SectionId] AS [SectionId], 
+    [StudentInfo].[Residential] AS [Residential]
+    FROM [dbo].[StudentInfo] AS [StudentInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Subject" EntityType="Self.Subject" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Subject].[SubjectId] AS [SubjectId], 
+    [Subject].[SubjectName] AS [SubjectName], 
+    [Subject].[ClassId] AS [ClassId], 
+    [Subject].[MaskingSubjectId] AS [MaskingSubjectId], 
+    [Subject].[SectionId] AS [SectionId]
+    FROM [dbo].[Subject] AS [Subject]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TeacherSubject" EntityType="Self.TeacherSubject" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TeacherSubject].[MaskingSubjectId] AS [MaskingSubjectId], 
+    [TeacherSubject].[TeacherId] AS [TeacherId]
+    FROM [dbo].[TeacherSubject] AS [TeacherSubject]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [User].[UId] AS [UId], 
+    [User].[FirstName] AS [FirstName], 
+    [User].[LastName] AS [LastName], 
+    [User].[Birthday] AS [Birthday], 
+    [User].[Gender] AS [Gender], 
+    [User].[Email] AS [Email], 
+    [User].[Password] AS [Password], 
+    [User].[UserTypeId] AS [UserTypeId], 
+    [User].[Status] AS [Status]
+    FROM [dbo].[User] AS [User]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserType" EntityType="Self.UserType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserType].[Id] AS [Id], 
+    [UserType].[Title] AS [Title]
+    FROM [dbo].[UserType] AS [UserType]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AMSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="MaskingId" />
+          </Key>
+          <Property Name="StudentId" Type="Int64" Nullable="false" />
+          <Property Name="MaskingId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="PresentStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="ClassName" />
+            <PropertyRef Name="Shift" />
+          </Key>
+          <Property Name="ClassId" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Shift" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EaxmResult">
+          <Key>
+            <PropertyRef Name="ExamTypeId" />
+            <PropertyRef Name="MaskingId" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="MarksOutOf" />
+            <PropertyRef Name="ObtainMark" />
+          </Key>
+          <Property Name="ExamTypeId" Type="Int64" Nullable="false" />
+          <Property Name="MaskingId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int64" Nullable="false" />
+          <Property Name="MarksOutOf" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ObtainMark" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ExamType">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ExamTitle" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="ExamTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Satus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Location" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Location" Type="Binary" MaxLength="100" FixedLength="false" Nullable="false" />
+          <Property Name="Extention" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="SenderId" />
+            <PropertyRef Name="ReceiverId" />
+            <PropertyRef Name="Message1" />
+          </Key>
+          <Property Name="SenderId" Type="Int64" Nullable="false" />
+          <Property Name="ReceiverId" Type="Int64" Nullable="false" />
+          <Property Name="Message1" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Notice">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PostedBy" />
+            <PropertyRef Name="MaskingId" />
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="PostedBy" Type="Int64" Nullable="false" />
+          <Property Name="MaskingId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="PostedForTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int64" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PaidStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SystemEntryDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="PeriodId" />
+            <PropertyRef Name="SectionId" />
+            <PropertyRef Name="MaskingSubjectId" />
+            <PropertyRef Name="SubjectId" />
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="PeriodId" Type="Int32" Nullable="false" />
+          <Property Name="SectionId" Type="Int32" Nullable="false" />
+          <Property Name="MaskingSubjectId" Type="Int32" Nullable="false" />
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RelationPeriodDayTime">
+          <Key>
+            <PropertyRef Name="PeriodId" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="EndTime" />
+            <PropertyRef Name="Day" />
+          </Key>
+          <Property Name="PeriodId" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EndTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Day" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RelationStudentGuardian">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="StudentId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="SectionId" />
+            <PropertyRef Name="SectionName" />
+          </Key>
+          <Property Name="SectionId" Type="Int32" Nullable="false" />
+          <Property Name="SectionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StudentBasic">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Birthday" />
+          </Key>
+          <Property Name="StudentId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MotherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PresentAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Contact1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Contact2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StudentInfo">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="Roll" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="StudentId" Type="Int64" Nullable="false" />
+          <Property Name="Roll" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Shift" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ClassId" Type="Int64" Nullable="false" />
+          <Property Name="SectionId" Type="Int32" />
+          <Property Name="Residential" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+            <PropertyRef Name="SubjectName" />
+            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="MaskingSubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="SubjectName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClassId" Type="Int32" Nullable="false" />
+          <Property Name="MaskingSubjectId" Type="Int32" Nullable="false" />
+          <Property Name="SectionId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TeacherSubject">
+          <Key>
+            <PropertyRef Name="MaskingSubjectId" />
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="MaskingSubjectId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UId" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UId" Type="Int64" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="AMSDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Attendances" EntityType="Self.Attendance" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="EaxmResults" EntityType="Self.EaxmResult" />
+          <EntitySet Name="ExamTypes" EntityType="Self.ExamType" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
+          <EntitySet Name="Notices" EntityType="Self.Notice" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Periods" EntityType="Self.Period" />
+          <EntitySet Name="RelationPeriodDayTimes" EntityType="Self.RelationPeriodDayTime" />
+          <EntitySet Name="RelationStudentGuardians" EntityType="Self.RelationStudentGuardian" />
+          <EntitySet Name="Sections" EntityType="Self.Section" />
+          <EntitySet Name="StudentBasics" EntityType="Self.StudentBasic" />
+          <EntitySet Name="StudentInfoes" EntityType="Self.StudentInfo" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <EntitySet Name="TeacherSubjects" EntityType="Self.TeacherSubject" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AMSDBModelStoreContainer" CdmEntityContainer="AMSDBEntities">
+          <EntitySetMapping Name="Attendances">
+            <EntityTypeMapping TypeName="AMSDBModel.Attendance">
+              <MappingFragment StoreEntitySet="Attendance">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="MaskingId" ColumnName="MaskingId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="PresentStatus" ColumnName="PresentStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="AMSDBModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EaxmResults">
+            <EntityTypeMapping TypeName="AMSDBModel.EaxmResult">
+              <MappingFragment StoreEntitySet="EaxmResult">
+                <ScalarProperty Name="ExamTypeId" ColumnName="ExamTypeId" />
+                <ScalarProperty Name="MaskingId" ColumnName="MaskingId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="MarksOutOf" ColumnName="MarksOutOf" />
+                <ScalarProperty Name="ObtainMark" ColumnName="ObtainMark" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamTypes">
+            <EntityTypeMapping TypeName="AMSDBModel.ExamType">
+              <MappingFragment StoreEntitySet="ExamType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ExamTitle" ColumnName="ExamTitle" />
+                <ScalarProperty Name="Satus" ColumnName="Satus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="AMSDBModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Extention" ColumnName="Extention" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="AMSDBModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="ReceiverId" ColumnName="ReceiverId" />
+                <ScalarProperty Name="Message1" ColumnName="Message" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notices">
+            <EntityTypeMapping TypeName="AMSDBModel.Notice">
+              <MappingFragment StoreEntitySet="Notice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="MaskingId" ColumnName="MaskingId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="PostedForTime" ColumnName="PostedForTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="AMSDBModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="PaidStatus" ColumnName="PaidStatus" />
+                <ScalarProperty Name="SystemEntryDate" ColumnName="SystemEntryDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periods">
+            <EntityTypeMapping TypeName="AMSDBModel.Period">
+              <MappingFragment StoreEntitySet="Period">
+                <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="MaskingSubjectId" ColumnName="MaskingSubjectId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelationPeriodDayTimes">
+            <EntityTypeMapping TypeName="AMSDBModel.RelationPeriodDayTime">
+              <MappingFragment StoreEntitySet="RelationPeriodDayTime">
+                <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelationStudentGuardians">
+            <EntityTypeMapping TypeName="AMSDBModel.RelationStudentGuardian">
+              <MappingFragment StoreEntitySet="RelationStudentGuardian">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="AMSDBModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentBasics">
+            <EntityTypeMapping TypeName="AMSDBModel.StudentBasic">
+              <MappingFragment StoreEntitySet="StudentBasic">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="PresentAddress" ColumnName="PresentAddress" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="Contact1" ColumnName="Contact1" />
+                <ScalarProperty Name="Contact2" ColumnName="Contact2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentInfoes">
+            <EntityTypeMapping TypeName="AMSDBModel.StudentInfo">
+              <MappingFragment StoreEntitySet="StudentInfo">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="Residential" ColumnName="Residential" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="AMSDBModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="MaskingSubjectId" ColumnName="MaskingSubjectId" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherSubjects">
+            <EntityTypeMapping TypeName="AMSDBModel.TeacherSubject">
+              <MappingFragment StoreEntitySet="TeacherSubject">
+                <ScalarProperty Name="MaskingSubjectId" ColumnName="MaskingSubjectId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="AMSDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UId" ColumnName="UId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="AMSDBModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
